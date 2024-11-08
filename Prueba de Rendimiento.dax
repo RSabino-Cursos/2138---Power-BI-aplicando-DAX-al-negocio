@@ -1,0 +1,15 @@
+﻿EVALUATE
+ROW (
+    "Prueba",
+        SUMX (
+            Tb_ItemsNotas,
+            IF ( Tb_ItemsNotas[Cantidad] > 20, [Total Ventas] * 1.3, [Total Ventas] * 0.5 )
+        )
+)
+
+EVALUATE
+ROW (
+    "Prueba2",
+        CALCULATE ( [Total Ventas] * 1.3, Tb_ItemsNotas[Cantidad] > 20 )
+            + CALCULATE ( [Total Ventas] * 0.5, NOT ( Tb_ItemsNotas[Cantidad] > 20 ) )
+)
